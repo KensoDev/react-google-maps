@@ -68,6 +68,7 @@ class MarkerCreator extends Component {
   }
 
   static _createMarker(markerProps) {
+    var bounds = new google.maps.LatLngBounds();
     const { mapHolderRef, anchorHolderRef } = markerProps;
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker
     const marker = new google.maps.Marker(composeOptions(markerProps, markerControlledPropTypes));
@@ -79,6 +80,9 @@ class MarkerCreator extends Component {
     } else {
       marker.setMap(mapHolderRef.getMap());
     }
+
+    bounds.extend(marker.position);
+    mapHolderRef.fitBounds(bounds);
 
     return marker;
   }
