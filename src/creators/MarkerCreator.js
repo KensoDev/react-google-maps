@@ -78,6 +78,8 @@ export default class MarkerCreator extends Component {
     const { mapHolderRef, anchorHolderRef } = markerProps;
     // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker
     const marker = new google.maps.Marker(composeOptions(markerProps, markerControlledPropTypes));
+    const bounds = mapHolderRef.getBounds();
+    const map    = mapHolderRef.getMap();
 
     if (anchorHolderRef) {
       if (`MarkerClusterer` === anchorHolderRef.getAnchorType()) {
@@ -86,6 +88,9 @@ export default class MarkerCreator extends Component {
     } else {
       marker.setMap(mapHolderRef.getMap());
     }
+
+    bounds.extend(marker.position);
+    map.fitBounds(bounds);
 
     return marker;
   }
