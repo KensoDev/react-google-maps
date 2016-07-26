@@ -22,6 +22,7 @@ export default class GoogleMapLoader extends Component {
 
   state = {
     map: null,
+    bounds: null,
   };
 
   mountGoogleMap(domEl) {
@@ -33,8 +34,10 @@ export default class GoogleMapLoader extends Component {
     // Create google.maps.Map instance so that dom is initialized before
     // React's children creators.
     //
-    const map = GoogleMapHolder._createMap(domEl, mapProps);
-    this.setState({ map });
+    const map    = GoogleMapHolder._createMap(domEl, mapProps);
+    const bounds = GoogleMapHolder._createBounds();
+
+    this.setState({ map, bounds });
   }
 
   renderChild() {

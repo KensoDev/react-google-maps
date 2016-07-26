@@ -59,6 +59,16 @@ export default class GoogleMapHolder extends Component {
     map: PropTypes.object.isRequired,
   }
 
+  static _createBounds() {
+    warning(`undefined` !== typeof google,
+`Make sure you've put a <script> tag in your <head> element to load Google Maps JavaScript API v3.
+ If you're looking for built-in support to load it for you, use the "async/ScriptjsLoader" instead.
+ See https://github.com/tomchentw/react-google-maps/pull/168`
+    );
+
+    return new google.maps.LatLngBounds();
+  }
+
   static _createMap(domEl, mapProps) {
     warning(`undefined` !== typeof google,
 `Make sure you've put a <script> tag in your <head> element to load Google Maps JavaScript API v3.
