@@ -54,6 +54,7 @@ export default class GoogleMapLoader extends Component {
       //
       return React.cloneElement(this.props.googleMapElement, {
         map: this.state.map,
+        bounds: this.state.bounds,
         // ------------ Deprecated ------------
         containerTagName: USE_NEW_BEHAVIOR_TAG_NAME,
       });

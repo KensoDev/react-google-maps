@@ -79,6 +79,10 @@ export default class GoogleMapHolder extends Component {
     return new google.maps.Map(domEl, composeOptions(mapProps, mapControlledPropTypes));
   }
 
+  getBounds() {
+    return this.props.bounds;
+  }
+
   getMap() {
     return this.props.map;
   }
